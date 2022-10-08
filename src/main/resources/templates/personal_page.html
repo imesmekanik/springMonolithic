@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinstagram Personal Page</title>
+  <link rel="stylesheet" th:href="@{${cssTemp}}">
+</head>
+
+<body>
+<div class="box">
+  <div class="form">
+    <div><h2>Sayfana hoşgeldin <span th:text="${userLogin}"></span></h2></div><br>
+    <a href="#img1">
+      <img th:each="imgId : ${imgArrayId}" th:id="${imgId}"  th:src="@{'https://picsum.photos/200/300?random='+${imgId}}" width="32%" height="300" onClick="reply_click(this.id)"></img>
+    </a>
+    <a href="#" class="lightbox" id="img1"></a>
+  </div>
+</div>
+
+<script>
+  function reply_click(clicked_id)
+  {
+      //alert(clicked_id);
+      let imgIdd= 'https://picsum.photos/200/300?random='+clicked_id;
+      //alert(imgIdd);
+      let myElement = document.getElementById("img1");
+      myElement.innerHTML=`<span style="background-image: url(${imgIdd})"></span>`;
+  }
+</script>
+</body>
+
+</html>
